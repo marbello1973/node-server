@@ -112,3 +112,11 @@ async function showMenu() {
 
 console.log("¡Bienvenido a la lista de Tareas!\n");
 showMenu();
+
+module.exports = {
+  addTask,
+  removeTask,
+  completeTask,
+  showTasks,
+  showMenu,
+};
