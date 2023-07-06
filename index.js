@@ -1,6 +1,8 @@
 const readline = require("readline");
+const tasks = require("./tareas.json");
+const fs = require("fs");
 
-const tasks = [];
+// const tasks = [];
 
 const readLine = readline.createInterface({
   input: process.stdin,
@@ -17,6 +19,8 @@ function addTask() {
       };
       tasks.push(task);
       console.log(`Tarea ${description} agregada`);
+
+      // saveTask();
       showMenu();
       resolve();
     });
@@ -31,8 +35,9 @@ function removeTask() {
         const task = tasks[taskIndex];
         tasks.splice(taskIndex, 1);
         console.log(`Tarea "${task.description}" eliminada`);
+        // saveTask();
       } else {
-        console.log(`"${task.description}" no encontrada`);
+        console.log(`"${tasks.description}" no encontrada`);
       }
       showMenu();
       resolve();
@@ -47,6 +52,7 @@ function completeTask() {
       if (task) {
         task.completed = true;
         console.log(`${task.description} completada`);
+        // saveTask();
       } else {
         console.log(`${task.description} no existe`);
       }
@@ -56,6 +62,38 @@ function completeTask() {
   });
 }
 
+function saveTask() {
+  // const data = JSON.stringify(tasks, null, 2);
+  fs.readFile("tareas.json", "utf-8", (err, data) => {
+    if (err) {
+      console.log("error");
+      return;
+    }
+    const existing = JSON.parse(data);
+
+    let lastId = existing.length > 0 ? existing[existing.length - 1].id : 0;
+    for (const task of tasks) {
+      lastId++;
+      console.log(lastId);
+      task.id = lastId;
+      existing.push(task);
+    }
+
+    fs.writeFile(
+      "tareas.json",
+      JSON.stringify(existing, null, 2),
+      "utf-8",
+      (err) => {
+        if (err) {
+          console.error("existe");
+        } else {
+          console.log("save sucessfully");
+        }
+      }
+    );
+  });
+}
+//me muestra todas las tareas
 function showTasks() {
   return new Promise((resolve) => {
     console.log("-----Listas de Tareas-----");

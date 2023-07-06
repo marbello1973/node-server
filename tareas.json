@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "description": "sacar la basura ",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "description": "sacar la basura ",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "description": "ir de compras",
+    "completed": false
+  },
+  {
+    "id": 4,
+    "description": "sacar la basura ",
+    "completed": false
+  },
+  {
+    "id": 5,
+    "description": "sacar la basura ",
+    "completed": false
+  },
+  {
+    "id": 6,
+    "description": "ir de compras",
+    "completed": false
+  },
+  {
+    "id": 7,
+    "description": "buscar los niños al colegio",
+    "completed": false
+  }
+]
